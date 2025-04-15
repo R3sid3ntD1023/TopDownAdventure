@@ -58,12 +58,12 @@ public class Quest : ScriptableObject
     public void Activate(IAcceptQuest acceptee)
     {
         State = QuestState.Active;
-        acceptee.QuestManager.ActivateQuest(this);
+        acceptee.GetQuestManager().ActivateQuest(this);
     }
 
     public void Complete(IAcceptQuest acceptee)
     {
         State = QuestState.Completed;
-        acceptee.QuestManager.CompleteQuest(this);
+        acceptee.GetQuestManager().CompleteQuest(this);
     }
 }

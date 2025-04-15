@@ -16,5 +16,4 @@ MonoBehaviour:
     Name: Click Quest
     Description: Click Space to Jump!
     Reward: {fileID: 0}
-  Goals:
-  - {fileID: 0}
+  Goals: []

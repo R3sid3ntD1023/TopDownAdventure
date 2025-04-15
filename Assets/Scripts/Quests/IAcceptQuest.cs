@@ -1,4 +1,4 @@
 public interface IAcceptQuest
 {
-    public abstract QuestManager QuestManager { get; }
+    public QuestManager GetQuestManager();
 }

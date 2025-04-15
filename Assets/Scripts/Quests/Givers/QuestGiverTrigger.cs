@@ -9,7 +9,7 @@ public class QuestGiverTrigger : QuestGiver
         {
             if (acceptee != null)
             {
-                if (!acceptee.QuestManager.HasQuest(Quest))
+                if (!acceptee.GetQuestManager().HasQuest(Quest))
                     GiveQuest(acceptee);
             }
         }

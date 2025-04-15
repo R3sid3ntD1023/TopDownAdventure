@@ -16,9 +16,9 @@ public abstract class QuestGiver : MonoBehaviour
         if (_QuestInstance == null)
             return;
 
-        if (!acceptee.QuestManager.HasQuest(_QuestInstance))
+        if (!acceptee.GetQuestManager().HasQuest(_QuestInstance))
         {
-            acceptee.QuestManager.ActivateQuest(_QuestInstance);
+            acceptee.GetQuestManager().ActivateQuest(_QuestInstance);
         }
     }
 }
