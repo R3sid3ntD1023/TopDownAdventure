@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="Quests" name="Title" />
+        <ui:VisualElement class="background" style="flex-grow: 1;">
+            <ui:Label text="Active Quests" />
+            <ui:ScrollView data-source-type="QuestManager, Assembly-CSharp" data-source-path="ActiveQuests" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement class="background" style="flex-grow: 1;">
+            <ui:Label text="Completed Quests" />
+            <ui:ScrollView data-source-type="QuestManager, Assembly-CSharp" data-source-path="CompletedQuests" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

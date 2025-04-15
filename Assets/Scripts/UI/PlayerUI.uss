@@ -1,0 +1,31 @@
+.body {
+    background-color: rgba(43, 43, 43, 0.91);
+}
+
+.background {
+    background-color: rgba(43, 43, 43, 0.91);
+    border-left-color: rgb(106, 106, 106);
+    border-right-color: rgb(106, 106, 106);
+    border-top-color: rgb(106, 106, 106);
+    border-bottom-color: rgb(106, 106, 106);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-slice-left: 0;
+    -unity-slice-top: 0;
+    -unity-slice-right: 0;
+    -unity-slice-bottom: 0;
+}
+
+.unity-label {
+    color: rgb(255, 255, 255);
+}
+
+.description {
+    font-size: 12px;
+}

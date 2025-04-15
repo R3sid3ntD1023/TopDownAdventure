@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="QuestUI" src="project://database/Assets/Scripts/UI/QuestUI.uxml?fileID=9197481963319205126&amp;guid=6fc5ff8c0ae8e9d45bddef056061ac48&amp;type=3#QuestUI" />
+    <Style src="project://database/Assets/Scripts/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
+    <ui:Instance template="QuestUI" />
+</ui:UXML>
