@@ -4,4 +4,5 @@ public interface ItemInterface
 
     public int GetStackSize();
 
+    public void RemoveFromStack(int amount);
 }

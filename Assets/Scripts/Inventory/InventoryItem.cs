@@ -15,6 +15,9 @@ public class InventoryItem : ScriptableObject
 
     public int MaxStackSize = 1;
 
+    [AssetReference]
+    public GameObject WorldPrefab;
+
     [ReadOnlyProperty]
     public int CurrentStackSize = 0;
 

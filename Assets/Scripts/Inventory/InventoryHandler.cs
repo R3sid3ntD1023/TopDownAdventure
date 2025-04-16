@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,6 +24,12 @@ public partial class InventoryHandler : MonoBehaviour
 
         InventoryElement = Document.rootVisualElement.Q<VisualElement>("Inventory");
         Inventory.OnInventoryItemAdded.AddListener(OnInventoryItemAdded);
+
+        for (int i = 0; i < Inventory.Items.Count; i++)
+        {
+            var element = InventoryItemTemplate.CloneTree();
+            InventoryElement.Add(element);
+        }
     }
 
     void OnInventoryItemAdded(InventoryItem item, int index)
@@ -30,9 +37,10 @@ public partial class InventoryHandler : MonoBehaviour
         if (InventoryElement == null || InventoryItemTemplate == null)
             return;
 
-        var element = InventoryItemTemplate.CloneTree();
-        element.dataSource = Inventory.Items[index];
-        InventoryElement.Add(element);
+        var children = InventoryElement.Children().ToList();
+
+        children[index].dataSource = Inventory.Items[index];
+
     }
 
 }

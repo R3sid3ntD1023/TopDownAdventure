@@ -18,13 +18,14 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemInterface item)
     {
-        var inventory_item = item.GetInventoryItem();
-        AddItem(inventory_item, item.GetStackSize());
+
+        AddItem(item, item.GetStackSize());
     }
 
-    public void AddToExistingItems(InventoryItem item, ref int remainder)
+    public void AddToExistingItems(ItemInterface item, ref int remainder)
     {
-        var items = Items.FindAll(i => i.ID == item.ID && item.CurrentStackSize != item.MaxStackSize);
+        var inventory_item = item.GetInventoryItem();
+        var items = Items.FindAll(i => i != null && i.ID == inventory_item.ID && i.CurrentStackSize != inventory_item.MaxStackSize);
         if (items.Count == 0)
             return;
 
@@ -36,27 +37,38 @@ public class Inventory : MonoBehaviour
             int removed = Mathf.Clamp(remainder, 0, Mathf.Abs(_item.MaxStackSize - _item.CurrentStackSize));
             _item.CurrentStackSize += removed;
             remainder -= removed;
+            item.RemoveFromStack(removed);
         }
 
     }
 
-    public void AddItem(InventoryItem item, int stack)
+    public void AddItem(ItemInterface item, int stack)
     {
         int remainder = stack;
 
-        AddToExistingItems(item, ref remainder);
-
+        var inventory_item = item.GetInventoryItem();
         while (remainder > 0)
         {
-            int added = Mathf.Clamp(remainder, 0, item.MaxStackSize);
+
+            AddToExistingItems(item, ref remainder);
+
+            int added = Mathf.Clamp(remainder, 0, inventory_item.MaxStackSize);
 
             if (added > 0)
             {
-                var instance = Instantiate(item);
-                instance.CurrentStackSize = added;
-                Items.Add(instance);
+                var instance = Instantiate(inventory_item);
 
-                OnInventoryItemAdded.Invoke(instance, Items.Count - 1);
+
+                var slot_index = Items.FindIndex(i => i == null);
+
+                if (slot_index != -1)
+                {
+                    item.RemoveFromStack(added);
+
+                    instance.CurrentStackSize = added;
+                    Items[slot_index] = instance;
+                    OnInventoryItemAdded.Invoke(instance, slot_index);
+                }
             }
 
             remainder -= added;

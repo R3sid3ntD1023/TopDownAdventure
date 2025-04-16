@@ -16,12 +16,10 @@ public class FoodItem : MonoBehaviour, ItemInterface
         return StackSize;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void RemoveFromStack(int amount)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
+        StackSize -= amount;
+        if (StackSize <= 0)
             Destroy(gameObject);
-        }
     }
-
 }

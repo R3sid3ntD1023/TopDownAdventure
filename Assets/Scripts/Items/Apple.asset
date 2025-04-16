@@ -17,3 +17,5 @@ MonoBehaviour:
   Description: Food
   Icon: {fileID: 2800000, guid: 2aa6ab62866ce4439ab7303f7da55e51, type: 3}
   MaxStackSize: 5
+  WorldPrefab: {fileID: 1006759564608765169, guid: 6912e2b5ff48f4447b8d3de12af528bc, type: 3}
+  CurrentStackSize: 0
