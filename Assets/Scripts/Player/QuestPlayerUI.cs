@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
 public class QuestPlayerUI : MonoBehaviour
 {
     public QuestPlayer Acceptee;
+
+    private VisualElement Root;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
@@ -13,19 +16,12 @@ public class QuestPlayerUI : MonoBehaviour
             return;
 
         var quest_manager = Acceptee.GetQuestManager();
-        var inventory = Acceptee.GetComponent<Inventory>();
 
-        var root = gameObject.GetComponent<UIDocument>().rootVisualElement;
+        Root = gameObject.GetComponent<UIDocument>().rootVisualElement;
 
-        var active = root.Q<ListView>("ActiveQuests");
-        var completed = root.Q<ListView>("CompletedQuests");
-        var inventory_list = root.Q<ListView>("Inventory");
+        var active = Root.Q<ListView>("ActiveQuests");
+        var completed = Root.Q<ListView>("CompletedQuests");
 
-        inventory_list.itemsSource = inventory.Items;
-        inventory_list.bindItem = (VisualElement element, int index) =>
-            {
-                element.dataSource = inventory.Items[index];
-            };
         active.itemsSource = quest_manager.ActiveQuests;
         active.bindItem = (VisualElement element, int index) =>
             {
@@ -37,5 +33,21 @@ public class QuestPlayerUI : MonoBehaviour
         {
             element.dataSource = quest_manager.CompletedQuests[index];
         };
+    }
+
+    public void ToggleInventory(InputAction.CallbackContext context)
+    {
+        if (Root == null || !context.performed) return;
+
+        var element = Root.Q<VisualElement>("UI");
+
+        if (!element.ClassListContains("toggable"))
+        {
+            element.AddToClassList("toggable");
+        }
+        else
+        {
+            element.RemoveFromClassList("toggable");
+        }
     }
 }

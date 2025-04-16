@@ -1,9 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="QuestUI" src="project://database/Assets/Scripts/UI/QuestUI.uxml?fileID=9197481963319205126&amp;guid=6fc5ff8c0ae8e9d45bddef056061ac48&amp;type=3#QuestUI" />
     <ui:Template name="Inventory" src="project://database/Assets/Scripts/UI/Inventory/Inventory.uxml?fileID=9197481963319205126&amp;guid=e9b887e3df6eae74d8a43dfc59352e3e&amp;type=3#Inventory" />
+    <ui:Template name="QuestUI" src="project://database/Assets/Scripts/UI/QuestUI.uxml?fileID=9197481963319205126&amp;guid=6fc5ff8c0ae8e9d45bddef056061ac48&amp;type=3#QuestUI" />
     <Style src="project://database/Assets/Scripts/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
-    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-around;">
-        <ui:Instance template="Inventory" style="flex-grow: 1;" />
-        <ui:Instance template="QuestUI" data-source-path="QuestManager" style="flex-grow: 1;" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement focusable="true" name="UI" class="toggable" style="flex-grow: 1; flex-direction: row; justify-content: space-around;">
+            <ui:Instance template="Inventory" style="flex-grow: 1; width: 50%;" />
+            <ui:Instance template="QuestUI" data-source-path="QuestManager" style="flex-grow: 1; flex-shrink: 0; width: 50%;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -2,11 +2,17 @@
     <Style src="project://database/Assets/Scripts/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
     <ui:VisualElement class="slotcontainer" style="max-width: 128px; max-height: 128px; align-self: flex-start;">
         <ui:VisualElement name="icon" class="slot-icon" style="position: relative; flex-grow: 1;">
+            <ui:Label text="Label">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="Name" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
             <Bindings>
                 <ui:DataBinding property="style.backgroundImage" data-source-path="Icon" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
+                <ui:DataBinding property="tooltip" data-source-path="Description" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
             </Bindings>
         </ui:VisualElement>
-        <ui:Label text="Label" class="unity-label description" style="position: absolute; bottom: initial; right: initial; top: 72%; left: 65%;">
+        <ui:Label text="Label" class="unity-label" style="position: absolute; bottom: initial; right: initial; top: 83px; left: 60px; font-size: 20px;">
             <Bindings>
                 <ui:DataBinding property="text" data-source-path="CurrentStackSize" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
             </Bindings>

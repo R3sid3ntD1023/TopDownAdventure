@@ -1,9 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class OnInventoryItemAddedEvent : UnityEvent<InventoryItem, int> { }
+public class OnInventoryItemUpdatedEvent : UnityEvent<InventoryItem, int> { }
 
 public class Inventory : MonoBehaviour
 {
     public List<InventoryItem> Items;
+
+    public OnInventoryItemAddedEvent OnInventoryItemAdded = new OnInventoryItemAddedEvent();
+
+    public void Start()
+    {
+
+    }
 
     public void AddItem(ItemInterface item)
     {
@@ -44,6 +55,8 @@ public class Inventory : MonoBehaviour
                 var instance = Instantiate(item);
                 instance.CurrentStackSize = added;
                 Items.Add(instance);
+
+                OnInventoryItemAdded.Invoke(instance, Items.Count - 1);
             }
 
             remainder -= added;

@@ -42,6 +42,7 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
 
     }
 
+
     public void OnMove(InputAction.CallbackContext callbackContext)
     {
         var value = callbackContext.ReadValue<Vector2>();
