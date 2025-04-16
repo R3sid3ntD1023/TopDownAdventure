@@ -12,6 +12,8 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
 
     public QuestManager _QuestManager;
 
+    private Inventory _Inventory;
+
     void Awake()
     {
         if (!QuestManagerTemplate)
@@ -19,6 +21,8 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
 
         _QuestManager = Instantiate(QuestManagerTemplate);
         _QuestManager.OnReceiveReward.AddListener(OnReceiveReward);
+
+        _Inventory = GetComponent<Inventory>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,6 +47,18 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
         var value = callbackContext.ReadValue<Vector2>();
 
         _RigidBody.linearVelocity = new Vector3(value.x, value.y, 0) * Time.deltaTime * Speed;
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!_Inventory)
+            return;
+
+        var item = other.GetComponent<ItemInterface>();
+        if (item != null)
+        {
+            _Inventory.AddItem(item);
+        }
     }
 
     public QuestManager GetQuestManager()

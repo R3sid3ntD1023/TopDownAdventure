@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ClickQuest
   m_EditorClassIdentifier: 
   Information:
-    Name: Click Quest
-    Description: Click Space to Jump!
-    Reward: {fileID: 0}
+    Name: Collect 1 Apple
+    Description: Collect an apple
+    Reward: {fileID: 11400000, guid: ee07df0aac20fb54d821753e6d6a8c6b, type: 2}
   Goals: []

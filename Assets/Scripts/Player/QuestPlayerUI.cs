@@ -13,12 +13,19 @@ public class QuestPlayerUI : MonoBehaviour
             return;
 
         var quest_manager = Acceptee.GetQuestManager();
+        var inventory = Acceptee.GetComponent<Inventory>();
 
         var root = gameObject.GetComponent<UIDocument>().rootVisualElement;
 
         var active = root.Q<ListView>("ActiveQuests");
         var completed = root.Q<ListView>("CompletedQuests");
+        var inventory_list = root.Q<ListView>("Inventory");
 
+        inventory_list.itemsSource = inventory.Items;
+        inventory_list.bindItem = (VisualElement element, int index) =>
+            {
+                element.dataSource = inventory.Items[index];
+            };
         active.itemsSource = quest_manager.ActiveQuests;
         active.bindItem = (VisualElement element, int index) =>
             {

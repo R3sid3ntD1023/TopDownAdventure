@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8595610dffeee1241ab3d14040e49134, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  ID: 4ae77a86ca7d93a489f3696bb4256890
+  Name: Apple
+  Description: Food
+  Icon: {fileID: 2800000, guid: 2aa6ab62866ce4439ab7303f7da55e51, type: 3}
+  MaxStackSize: 5

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169948062804872535}
   - component: {fileID: 3292019469454212044}
+  - component: {fileID: 5511411083145819332}
   - component: {fileID: 2507854055720531010}
   - component: {fileID: 3031578906989258977}
   - component: {fileID: 8958991212288019558}
@@ -49,7 +50,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 600
-  QuestManager: {fileID: 11400000, guid: c3efd0a39b6e0b84cbec14d3f713424a, type: 2}
+  QuestManagerTemplate: {fileID: 0}
+  _QuestManager: {fileID: 0}
+--- !u!114 &5511411083145819332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072829696595887310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195298140dde8734bb08fe6dd2d8892e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2507854055720531010
 MonoBehaviour:
   m_ObjectHideFlags: 0

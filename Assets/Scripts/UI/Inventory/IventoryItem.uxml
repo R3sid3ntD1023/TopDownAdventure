@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
+    <ui:VisualElement class="slotcontainer" style="max-width: 128px; max-height: 128px; align-self: flex-start;">
+        <ui:VisualElement name="icon" class="slot-icon" style="position: relative; flex-grow: 1;">
+            <Bindings>
+                <ui:DataBinding property="style.backgroundImage" data-source-path="Icon" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:VisualElement>
+        <ui:Label text="Label" class="unity-label description" style="position: absolute; bottom: initial; right: initial; top: 72%; left: 65%;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="CurrentStackSize" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>
