@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class QuestGiver : MonoBehaviour
 {
     public Quest Quest;
+
     private Quest _QuestInstance;
 
     public void Start()

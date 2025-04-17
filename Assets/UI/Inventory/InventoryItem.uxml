@@ -1,18 +1,17 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
-    <ui:VisualElement class="slotcontainer" style="max-width: 128px; max-height: 128px; align-self: flex-start;">
+    <Style src="project://database/Assets/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
+    <ui:VisualElement class="slotcontainer">
         <ui:VisualElement name="icon" class="slot-icon" style="position: relative; flex-grow: 1;">
-            <ui:Label text="Label">
+            <ui:Label>
                 <Bindings>
                     <ui:DataBinding property="text" data-source-path="Name" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
                 </Bindings>
             </ui:Label>
             <Bindings>
                 <ui:DataBinding property="style.backgroundImage" data-source-path="Icon" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
-                <ui:DataBinding property="tooltip" data-source-path="Description" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
             </Bindings>
         </ui:VisualElement>
-        <ui:Label text="Label" class="unity-label" style="position: absolute; bottom: initial; right: initial; top: 83px; left: 60px; font-size: 20px;">
+        <ui:Label name="Label" text="0" class="unity-label" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; white-space: pre; -unity-text-align: upper-right; max-width: 80px; width: 80px; bottom: 10%; left: auto; right: 5%; position: absolute;">
             <Bindings>
                 <ui:DataBinding property="text" data-source-path="CurrentStackSize" data-source-type="InventoryItem, Assembly-CSharp" binding-mode="ToTarget" />
             </Bindings>

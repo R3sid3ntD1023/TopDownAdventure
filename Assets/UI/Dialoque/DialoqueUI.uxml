@@ -1,0 +1,23 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=04c985b40af49f04bb887d3a073160c1&amp;type=3#PlayerUI" />
+    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: flex-end; align-items: center;">
+        <ui:VisualElement picking-mode="Ignore" class="background border" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; bottom: 10%; max-height: 20%; height: 20%; max-width: 75%; width: 75%; flex-direction: column; align-items: flex-start;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; align-items: center;">
+                <ui:Label text="Speaker:" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: upper-center;" />
+                <ui:Label text="Name" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: upper-center;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Info.Speaker" data-source-type="DialoqueNode, Assembly-CSharp" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: 100%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; align-self: center; align-items: center;">
+                <ui:Label text="Label" name="Dialoque" style="flex-grow: 1;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="Info.Message" data-source-type="DialoqueNode, Assembly-CSharp" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Button text="Next" name="Submit" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

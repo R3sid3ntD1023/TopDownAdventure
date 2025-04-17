@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca150dfeec351d643992d367cb5b4007, type: 3}
+  m_Name: Dialoque0
+  m_EditorClassIdentifier: 
+  ID:
+    _id: e942f227-39c3-4c6b-b9bf-f915520667ce
+  Title: 
+  Description: Description...
+  Child: {fileID: 11400000, guid: 1ed4447ac32573e46bf81ca46bb76b84, type: 2}
+  Info:
+    Speaker: Speaker0
+    Message: Im am Speaking to you!
+    Sprite: {fileID: 0}

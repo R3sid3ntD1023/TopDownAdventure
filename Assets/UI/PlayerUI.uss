@@ -50,8 +50,6 @@
 }
 
 .slotcontainer {
-    width: 128px;
-    height: 128px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -65,7 +63,11 @@
     margin-right: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
-    align-self: flex-start;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    flex-grow: 1;
 }
 
 .header {
@@ -91,5 +93,42 @@
 }
 
 .toggable {
-    visibility: hidden;
+    display: none;
+}
+
+.border {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left-color: rgb(255, 204, 78);
+    border-right-color: rgb(255, 204, 78);
+    border-top-color: rgb(255, 204, 78);
+    border-bottom-color: rgb(255, 204, 78);
+}
+
+.button {
+    border-left-color: rgba(255, 200, 40, 0);
+    border-right-color: rgba(255, 200, 40, 0);
+    border-top-color: rgba(255, 200, 40, 0);
+    border-bottom-color: rgba(255, 200, 40, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgb(188, 127, 4);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.button:hover {
+    -unity-font-style: bold;
 }
