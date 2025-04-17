@@ -13,7 +13,6 @@ public class Dialoque : MonoBehaviour
         if (DialoqueTree != null)
         {
             _dialogueTreeInstance = DialoqueTree.Clone() as DialoqueTree;
-            _dialogueTreeInstance.Init();
         }
 
     }

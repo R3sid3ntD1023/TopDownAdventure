@@ -27,7 +27,7 @@ public partial class InventoryHandler : MonoBehaviour
 
         for (int i = 0; i < Inventory.Items.Count; i++)
         {
-            var element = InventoryItemTemplate.CloneTree();
+            var element = InventoryItemTemplate.Instantiate();
             InventoryElement.Add(element);
         }
     }

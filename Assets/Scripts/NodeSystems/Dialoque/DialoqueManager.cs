@@ -31,16 +31,17 @@ public class DialoqueManager : MonoBehaviour
 
         _currentDialoqueTree = tree;
         _currentDialoqueTree.OnDialoqueTreeFinished.AddListener(OnTreeFinished);
-        _currentDialoqueTree.OnDialoqueExecuted.AddListener(OnDialogChanged);
+        _currentDialoqueTree.OnDialoqueExecuted += OnDialogExecuted;
     }
 
     private void OnTreeFinished(DialoqueTree tree)
     {
         _currentDialoqueTree.OnDialoqueTreeFinished.RemoveListener(OnTreeFinished);
+        _currentDialoqueTree.OnDialoqueExecuted -= OnDialogExecuted;
         _currentDialoqueTree = null;
     }
 
-    private void OnDialogChanged(DialoqueNode node)
+    public void OnDialogExecuted(DialoqueNode node)
     {
         RootElement.dataSource = node;
     }

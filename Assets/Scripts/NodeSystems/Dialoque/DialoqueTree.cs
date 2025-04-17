@@ -10,15 +10,18 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
 {
     public OnDialoqueTreeFinishedEvent OnDialoqueTreeFinished;
 
-    public OnDialoqueExecutedEvent OnDialoqueExecuted;
+    public UnityAction<DialoqueNode> OnDialoqueExecuted;
 
-    public void Init()
-    {
-        Traverse(Current);
-    }
+    private bool _Started = false;
 
     public override void Execute()
     {
+        if (!_Started)
+        {
+            Traverse(Current);
+            _Started = true;
+        }
+
         if (Current == null)
         {
             OnDialoqueTreeFinished.Invoke(this);
@@ -26,7 +29,7 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
         }
 
         Current.Execute();
-        Current = Current.GetNext() as DialoqueBaseNode;
+        Current = Current.GetNext();
     }
 
     public override object Clone()
@@ -36,16 +39,16 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
         return tree;
     }
 
-    public void Traverse(DialoqueBaseNode root)
+    private void Traverse(DialoqueBaseNode root)
     {
         DialoqueBaseNode current = root;
         while (current != null)
         {
-            current = current.GetNext();
             if (current is DialoqueNode _dialoque && _dialoque != null)
             {
                 _dialoque.OnExecuted.AddListener(OnDialoqueChanged);
             }
+            current = current.GetNext();
         }
     }
 

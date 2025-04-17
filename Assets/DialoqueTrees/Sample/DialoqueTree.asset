@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Current: {fileID: 11400000, guid: 0334ca3854d34394e9cf7c5b25032b79, type: 2}
   Nodes: []
+  OnDialoqueTreeFinished:
+    m_PersistentCalls:
+      m_Calls: []
