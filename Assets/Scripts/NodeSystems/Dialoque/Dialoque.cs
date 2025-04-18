@@ -8,7 +8,7 @@ public class Dialoque : MonoBehaviour
     private DialoqueTree _dialogueTreeInstance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         if (DialoqueTree != null)
         {
@@ -18,16 +18,13 @@ public class Dialoque : MonoBehaviour
 
     }
 
+    public DialoqueTree GetTree()
+    {
+        return _dialogueTreeInstance;
+    }
+
     public void Speak()
     {
         DialoqueManager.Instance.SetCurrentTree(_dialogueTreeInstance);
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Speak();
-        }
     }
 }

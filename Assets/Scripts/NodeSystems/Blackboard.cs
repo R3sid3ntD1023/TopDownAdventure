@@ -46,6 +46,14 @@ public class Blackboard : ScriptableObject
         Keys.Add(new BlackBoardKeyGameObject("Self"));
     }
 
+    public void AddKey<T>(string name)
+    {
+        if (HasKey(name))
+            return;
+
+        Keys.Add(new BlackBoardKey<T>(name));
+    }
+
     public BlackBoardKeyBase GetKey(string name)
     {
         return Keys.Find(x => x.Name == name);
@@ -56,5 +64,10 @@ public class Blackboard : ScriptableObject
         var key = GetKey(name);
         if (key != null)
             key.Value = value;
+    }
+
+    public bool HasKey(string name)
+    {
+        return Keys.Exists(x => x.Name == name);
     }
 }

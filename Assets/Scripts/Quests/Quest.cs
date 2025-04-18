@@ -55,6 +55,8 @@ public class Quest : ScriptableObject
 
     private QuestState State;
 
+    public bool IsCompleted() { return State != QuestState.Active; }
+
     public void Activate(IAcceptQuest acceptee)
     {
         State = QuestState.Active;

@@ -9,9 +9,11 @@ public class QuestPlayerUI : MonoBehaviour
 
     private VisualElement Root;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
+
         if (Acceptee == null)
             return;
 

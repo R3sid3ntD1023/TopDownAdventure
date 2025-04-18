@@ -26,7 +26,7 @@ public class DialoqueManager : MonoBehaviour
 
     public void SetCurrentTree(DialoqueTree tree)
     {
-        if (_currentDialoqueTree == tree)
+        if (_currentDialoqueTree == tree || tree.IsFinished())
             return;
 
         _currentDialoqueTree = tree;

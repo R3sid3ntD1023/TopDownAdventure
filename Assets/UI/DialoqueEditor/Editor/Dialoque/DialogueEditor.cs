@@ -8,8 +8,6 @@ using UnityEngine.UIElements;
 
 public class DialoqueEditor : GraphViewEditorWindow
 {
-    [SerializeField]
-    private VisualTreeAsset m_VisualTreeAsset = default;
 
     private DialoqueTreeView m_TreeView;
 

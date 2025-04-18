@@ -21,21 +21,44 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
 
     public override void Execute()
     {
-        if (Current == null && !_Finished)
+        if (IsFinished())
+            return;
+
+        Initialize();
+
+        var state = Current?.Execute();
+        if (state == ENodeState.Finished)
         {
-            OnFinished.Invoke(this);
-            _Finished = true;
+            Current = Current?.GetNext();
+            Debug.Log($"{Current}");
+        }
+
+        if (Current == null)
+        {
+            Finish();
             return;
         }
 
-        if (!_Started)
-        {
-            Traverse(Current);
-            _Started = true;
-        }
+    }
 
-        Current.Execute();
-        Current = Current.GetNext();
+    private void Initialize()
+    {
+        if (_Started)
+            return;
+
+        Traverse(Current);
+        _Started = true;
+    }
+
+    public bool IsFinished()
+    {
+        return _Finished;
+    }
+
+    private void Finish()
+    {
+        OnFinished.Invoke(this);
+        _Finished = true;
     }
 
     public override object Clone()

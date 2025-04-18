@@ -1,25 +1,30 @@
 using UnityEngine;
 
-public abstract class QuestGiver : MonoBehaviour
+[RequireComponent(typeof(Dialoque))]
+public class QuestGiver : MonoBehaviour, IInteractable
 {
-    public Quest Quest;
 
-    private Quest _QuestInstance;
+    private Dialoque m_Dialoque;
 
     public void Start()
     {
-        if (Quest)
-            _QuestInstance = Instantiate(Quest);
+        m_Dialoque = GetComponent<Dialoque>();
+
     }
 
-    public void GiveQuest(IAcceptQuest acceptee)
+    void IInteractable.OnInteract(Interactee interactee)
     {
-        if (_QuestInstance == null)
-            return;
-
-        if (!acceptee.GetQuestManager().HasQuest(_QuestInstance))
+        if (interactee.GetComponent<IAcceptQuest>() is var acceptee && acceptee != null)
         {
-            acceptee.GetQuestManager().ActivateQuest(_QuestInstance);
+            var blackboard = m_Dialoque.GetTree().Blackboard;
+            if (blackboard)
+            {
+                blackboard.AddKey<IAcceptQuest>("Interactee");
+                blackboard.SetKey("Interactee", acceptee);
+            }
+
+            m_Dialoque.Speak();
+
         }
     }
 }

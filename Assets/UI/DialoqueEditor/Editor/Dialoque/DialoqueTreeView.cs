@@ -62,12 +62,12 @@ public partial class DialoqueTreeView : GraphView
             {
                 var parent_view = FindNodeView(n);
                 var children = _node.GetChildren();
-                int i = 0;
                 children.ForEach(c =>
                 {
                     if (c != null)
                     {
                         var child_view = FindNodeView(c);
+                        //TODO: Link Edges using LookUp table
                     }
                 });
             }

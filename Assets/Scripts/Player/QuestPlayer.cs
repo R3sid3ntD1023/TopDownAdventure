@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Interactee)), RequireComponent(typeof(Inventory))]
 public class QuestPlayer : MonoBehaviour, IAcceptQuest
 {
     public float Speed = 100f;
@@ -10,9 +10,12 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
 
     private Rigidbody2D _RigidBody;
 
+    [ReadOnlyProperty]
     public QuestManager _QuestManager;
 
     private Inventory _Inventory;
+
+    private Interactee _Interactee;
 
     void Awake()
     {
@@ -23,6 +26,7 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
         _QuestManager.OnReceiveReward.AddListener(OnReceiveReward);
 
         _Inventory = GetComponent<Inventory>();
+        _Interactee = GetComponent<Interactee>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,18 +52,6 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
         var value = callbackContext.ReadValue<Vector2>();
 
         _RigidBody.linearVelocity = new Vector3(value.x, value.y, 0) * Time.deltaTime * Speed;
-    }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!_Inventory)
-            return;
-
-        var item = other.GetComponent<ItemInterface>();
-        if (item != null)
-        {
-            _Inventory.AddItem(item);
-        }
     }
 
     public QuestManager GetQuestManager()

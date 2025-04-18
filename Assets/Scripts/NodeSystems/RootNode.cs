@@ -7,10 +7,12 @@ public class RootNode : BaseNode, IHaveChildrenInterface<BaseNode>
     [AssetReference, Header("Children")]
     public BaseNode Child;
 
-    protected override void OnExecute()
+    protected override ENodeState OnExecute()
     {
         if (Child != null)
-            Child.Execute();
+            return Child.Execute();
+
+        return ENodeState.Finished;
     }
 
     public override object Clone()

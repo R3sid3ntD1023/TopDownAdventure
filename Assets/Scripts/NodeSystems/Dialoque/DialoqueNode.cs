@@ -27,10 +27,12 @@ public class DialoqueNode : DialoqueBaseNode
     public DialoqueInfo Info;
 
 
-    protected override void OnExecute()
+    protected override ENodeState OnExecute()
     {
         Debug.Log($"Speaker: {Info.Speaker} - {Info.Message}");
         Info.OnExecuted.Invoke(this);
+
+        return ENodeState.Finished;
     }
 
     public override VisualElement CreateInspectorGUI()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FoodItem : MonoBehaviour, ItemInterface
+public class FoodItem : MonoBehaviour, ItemInterface, IInteractable
 {
     public InventoryItem InventoryItem;
 
@@ -21,5 +21,13 @@ public class FoodItem : MonoBehaviour, ItemInterface
         StackSize -= amount;
         if (StackSize <= 0)
             Destroy(gameObject);
+    }
+
+    void IInteractable.OnInteract(Interactee interactee)
+    {
+        if (interactee.GetComponent<Inventory>() is var inventory)
+        {
+            inventory.AddItem(this);
+        }
     }
 }

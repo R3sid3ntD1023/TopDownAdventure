@@ -2,6 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum ENodeState
+{
+    Started,
+    Executing,
+    Finished
+}
+
 public abstract class BaseNode : ScriptableObject, ICloneable
 {
     [AssetReference]
@@ -18,6 +25,8 @@ public abstract class BaseNode : ScriptableObject, ICloneable
     [TextArea]
     public string Description = "Description...";
 
+    private ENodeState m_State = ENodeState.Started;
+
 
     public virtual object Clone()
     {
@@ -29,12 +38,37 @@ public abstract class BaseNode : ScriptableObject, ICloneable
         return null;
     }
 
-    public void Execute()
+    public ENodeState Execute()
     {
-        OnExecute();
+        if (m_State == ENodeState.Started)
+        {
+            OnBeginExecute();
+            m_State = ENodeState.Executing;
+
+            Debug.Log("Started!");
+        }
+
+        if (m_State != ENodeState.Finished)
+        {
+            var state = OnExecute();
+
+            Debug.Log("Executing...");
+
+            if (state == ENodeState.Finished)
+            {
+                OnEndExecute();
+                m_State = ENodeState.Finished;
+            }
+        }
+
+        return m_State;
     }
 
-    protected abstract void OnExecute();
+    protected virtual void OnBeginExecute() { Debug.Log("Begin Execute"); }
+
+    protected abstract ENodeState OnExecute();
+
+    protected virtual void OnEndExecute() { Debug.Log("End Execute"); }
 
     protected Blackboard GetBlackboard()
     {
