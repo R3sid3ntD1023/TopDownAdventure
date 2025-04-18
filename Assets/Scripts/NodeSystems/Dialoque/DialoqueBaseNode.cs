@@ -1,3 +1,6 @@
+
+[OutputPin(typeof(DialoqueBaseNode))]
+[InputPin(typeof(DialoqueBaseNode))]
 public abstract class DialoqueBaseNode : RootNode
 {
 

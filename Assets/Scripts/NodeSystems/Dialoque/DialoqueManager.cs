@@ -5,6 +5,8 @@ public class DialoqueManager : MonoBehaviour
 {
     public static DialoqueManager Instance;
 
+    public UIDocument DialoqueUI;
+
     private DialoqueManager() { }
 
     private DialoqueTree _currentDialoqueTree;
@@ -19,9 +21,7 @@ public class DialoqueManager : MonoBehaviour
         }
 
         Instance = this;
-        var _dialoqueUI = GetComponent<UIDocument>();
-        RootElement = _dialoqueUI.rootVisualElement;
-        RootElement.Q<Button>("Submit").clicked += Execute;
+
     }
 
     public void SetCurrentTree(DialoqueTree tree)
@@ -30,20 +30,21 @@ public class DialoqueManager : MonoBehaviour
             return;
 
         _currentDialoqueTree = tree;
-        _currentDialoqueTree.OnDialoqueTreeFinished.AddListener(OnTreeFinished);
-        _currentDialoqueTree.OnDialoqueExecuted += OnDialogExecuted;
+        _currentDialoqueTree.OnFinished += OnTreeFinished;
+
+        DialoqueUI.gameObject.SetActive(true);
+        RootElement = DialoqueUI.rootVisualElement;
+        RootElement.Q<Button>("Submit").clicked += Execute;
+        RootElement.dataSource = tree;
     }
 
     private void OnTreeFinished(DialoqueTree tree)
     {
-        _currentDialoqueTree.OnDialoqueTreeFinished.RemoveListener(OnTreeFinished);
-        _currentDialoqueTree.OnDialoqueExecuted -= OnDialogExecuted;
+        _currentDialoqueTree.OnFinished -= OnTreeFinished;
         _currentDialoqueTree = null;
-    }
+        RootElement.dataSource = null;
 
-    public void OnDialogExecuted(DialoqueNode node)
-    {
-        RootElement.dataSource = node;
+        DialoqueUI.gameObject.SetActive(false);
     }
 
     private void Execute()

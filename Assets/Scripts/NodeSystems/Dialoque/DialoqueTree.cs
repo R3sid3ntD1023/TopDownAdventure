@@ -8,24 +8,25 @@ public class OnDialoqueTreeFinishedEvent : UnityEvent<DialoqueTree> { }
 [CreateAssetMenu(fileName = "DialoqueTree", menuName = "Dialoque/Tree")]
 public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
 {
-    public OnDialoqueTreeFinishedEvent OnDialoqueTreeFinished;
-
-    public UnityAction<DialoqueNode> OnDialoqueExecuted;
+    public UnityAction<DialoqueTree> OnFinished;
 
     private bool _Started = false;
 
+    private bool _Finished = false;
+
     public override void Execute()
     {
+        if (Current == null && !_Finished)
+        {
+            OnFinished.Invoke(this);
+            _Finished = true;
+            return;
+        }
+
         if (!_Started)
         {
             Traverse(Current);
             _Started = true;
-        }
-
-        if (Current == null)
-        {
-            OnDialoqueTreeFinished.Invoke(this);
-            return;
         }
 
         Current.Execute();
@@ -44,16 +45,8 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
         DialoqueBaseNode current = root;
         while (current != null)
         {
-            if (current is DialoqueNode _dialoque && _dialoque != null)
-            {
-                _dialoque.OnExecuted.AddListener(OnDialoqueChanged);
-            }
+
             current = current.GetNext();
         }
-    }
-
-    private void OnDialoqueChanged(DialoqueNode node)
-    {
-        OnDialoqueExecuted.Invoke(node);
     }
 }
