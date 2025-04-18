@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class NodeView<T> : Node where T : BaseNode
 {
@@ -12,17 +15,17 @@ public class NodeView<T> : Node where T : BaseNode
 
     public UnityAction<T> OnSelectedEvent;
 
+    public UnityAction<T> OnSetAsRoot;
+
     public NodeView(T node, string title)
     {
-        this.Node = node;
-        this.title = title;
-        this.viewDataKey = node.ID.ID;
+        Initialize(node, title);
+    }
 
-
-        this.style.left = node.Position.x;
-        this.style.top = Node.Position.y;
-
-        InitilaizePorts();
+    public NodeView(T node, string title, string uiFile)
+        : base(uiFile)
+    {
+        Initialize(node, title);
     }
 
     public override void SetPosition(Rect newPos)
@@ -35,6 +38,37 @@ public class NodeView<T> : Node where T : BaseNode
     {
         base.OnSelected();
         OnSelectedEvent?.Invoke(Node);
+    }
+
+    public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+    {
+        //base.BuildContextualMenu(evt);
+        if (evt.target == this)
+        {
+            evt.menu.AppendAction("Set Root", a => { OnSetAsRoot?.Invoke(Node); });
+        }
+    }
+
+    private void Initialize(T node, string title)
+    {
+        this.Node = node;
+        this.title = title;
+        this.viewDataKey = node.ID.ID;
+        this.dataSource = node;
+
+        this.style.left = node.Position.x;
+        this.style.top = node.Position.y;
+
+        var content_element = this.Q<VisualElement>("content");
+        var content = node.CreateInspectorGUI();
+        if (content != null)
+        {
+            content.Bind(new SerializedObject(node));
+            content_element.Add(content);
+        }
+
+
+        InitilaizePorts();
     }
 
     private void InitilaizePorts()

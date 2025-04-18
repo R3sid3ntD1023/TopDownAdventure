@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Root", menuName = "Nodes/Root")]
 public class RootNode : BaseNode, IHaveChildrenInterface<BaseNode>
 {
-    [AssetReference]
+    [AssetReference, Header("Children")]
     public BaseNode Child;
 
     protected override void OnExecute()

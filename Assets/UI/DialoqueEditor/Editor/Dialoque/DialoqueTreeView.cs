@@ -33,6 +33,8 @@ public partial class DialoqueTreeView : GraphView
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         //base.BuildContextualMenu(evt);
+
+        if (evt.target == this)
         {
             var types = TypeCache.GetTypesDerivedFrom<DialoqueBaseNode>().Where(t => !t.IsAbstract);
             foreach (var type in types)
@@ -91,6 +93,7 @@ public partial class DialoqueTreeView : GraphView
 
         var view = new DialoqueNodeView(node, node.name);
         view.OnSelectedEvent += OnNodeSelectedEvent;
+        view.OnSetAsRoot += SetRootNode;
         AddElement(view);
     }
 
@@ -138,6 +141,11 @@ public partial class DialoqueTreeView : GraphView
         e.portType.IsAssignableFrom(startPort.portType)).ToList();
     }
 
+    private void SetRootNode(DialoqueBaseNode node)
+    {
+        if (m_DialoqueTree != null)
+            m_DialoqueTree.Current = node;
+    }
 }
 
 [UxmlElement]
@@ -149,7 +157,8 @@ public partial class DialoqueNodeList : NodeListView<DialoqueBaseNode>
 public partial class DialoqueNodeView : NodeView<DialoqueBaseNode>
 {
 
-    public DialoqueNodeView(DialoqueBaseNode node, string title) : base(node, title)
+    public DialoqueNodeView(DialoqueBaseNode node, string title)
+        : base(node, title, AssetDatabase.GetAssetPath(DialoqueSettings.GetOrCreateSettings().NodeElementUxml))
     {
     }
 }

@@ -14,6 +14,11 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
 
     private bool _Finished = false;
 
+    public void Initialize(GameObject owner)
+    {
+        Blackboard.SetKey("Self", owner);
+    }
+
     public override void Execute()
     {
         if (Current == null && !_Finished)
@@ -36,7 +41,8 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
     public override object Clone()
     {
         var tree = Instantiate(this);
-        tree.Current = Current.Clone() as DialoqueBaseNode;
+        tree.Blackboard = Blackboard.Instantiate(Blackboard);
+        tree.Current = Current?.Clone() as DialoqueBaseNode;
         return tree;
     }
 
@@ -45,7 +51,6 @@ public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
         DialoqueBaseNode current = root;
         while (current != null)
         {
-
             current = current.GetNext();
         }
     }

@@ -2,6 +2,7 @@ using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -46,9 +47,8 @@ public class DialoqueEditor : GraphViewEditorWindow
     {
         m_DialoqueTree = dialoqueTree;
         m_SerializedObject = new SerializedObject(m_DialoqueTree);
-
         m_TreeView.PopulateGraph(m_DialoqueTree);
-
+        this.rootVisualElement.Bind(m_SerializedObject);
     }
 
     public void CreateGUI()
@@ -78,7 +78,16 @@ public class DialoqueEditor : GraphViewEditorWindow
         left_view.Add(m_NodeListView);
         left_view.Add(m_InspectorView);
 
-        main_view.Add(left_view);
+
+        var top_view = new TwoPaneSplitView();
+        top_view.orientation = TwoPaneSplitViewOrientation.Vertical;
+        top_view.Add(left_view);
+
+        var black_board_property = new PropertyField();
+        black_board_property.bindingPath = "Blackboard";
+        top_view.Add(black_board_property);
+
+        main_view.Add(top_view);
         main_view.Add(m_TreeView);
 
 

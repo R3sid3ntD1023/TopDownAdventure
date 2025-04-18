@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb66c6a63d721f341b3f2ebe043c51ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialoqueTree: {fileID: 0}
+  DialoqueTree: {fileID: 11400000, guid: 1cb42b8d315642c479dbe47fa71dd1ad, type: 2}
   _dialogueTreeInstance: {fileID: 0}
 --- !u!1001 &1000102216
 PrefabInstance:

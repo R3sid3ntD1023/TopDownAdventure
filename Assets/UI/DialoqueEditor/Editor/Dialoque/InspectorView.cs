@@ -9,6 +9,7 @@ public partial class InspectorView<T> : VisualElement where T : BaseNode
 {
     Editor m_Editor;
 
+    Length m_Padding = new Length(20, LengthUnit.Pixel);
 
     internal void UpdateSelection(T node)
     {
@@ -18,6 +19,11 @@ public partial class InspectorView<T> : VisualElement where T : BaseNode
         m_Editor = Editor.CreateEditor(node);
         var element = m_Editor.CreateInspectorGUI();
         element.style.flexGrow = 1;
+        element.style.paddingTop = m_Padding;
+        element.style.paddingLeft = m_Padding;
+        element.style.paddingBottom = m_Padding;
+        element.style.paddingRight = m_Padding;
+
         element.Bind(new SerializedObject(node));
         Add(element);
     }

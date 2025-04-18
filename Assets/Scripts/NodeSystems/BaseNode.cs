@@ -1,12 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class BaseNode : ScriptableObject, ICloneable
 {
-    [ReadOnlyProperty]
+    [AssetReference]
+    public NodeTreeBase ParentTree;
+
+    [HideInInspector]
     public NodeID ID;
 
-    [ReadOnlyProperty]
+    [HideInInspector]
     public Vector2 Position;
 
     public string Title = "Title";
@@ -20,10 +24,20 @@ public abstract class BaseNode : ScriptableObject, ICloneable
         return Instantiate(this);
     }
 
+    public virtual VisualElement CreateInspectorGUI()
+    {
+        return null;
+    }
+
     public void Execute()
     {
         OnExecute();
     }
 
     protected abstract void OnExecute();
+
+    protected Blackboard GetBlackboard()
+    {
+        return ParentTree.Blackboard;
+    }
 }

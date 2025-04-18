@@ -3,21 +3,31 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class NodeTree<NodeType, RootType> : ScriptableObject, ICloneable where NodeType : BaseNode
+public abstract class NodeTreeBase : ScriptableObject
 {
-    public RootType Current;
-
-    public List<NodeType> Nodes = new List<NodeType>();
+    [AssetReference]
+    public Blackboard Blackboard;
 
     public abstract void Execute();
 
     public abstract object Clone();
+
+}
+
+public abstract class NodeTree<NodeType, RootType> : NodeTreeBase, ICloneable where NodeType : BaseNode
+{
+
+    public RootType Current;
+
+    public List<NodeType> Nodes = new List<NodeType>();
+
 
     public NodeType CreateNode(Type type, Vector2 pos)
     {
         var new_node = ScriptableObject.CreateInstance(type) as NodeType;
         new_node.Position = pos;
         new_node.name = type.Name;
+        new_node.ParentTree = this;
 
         Undo.RegisterCreatedObjectUndo(new_node, "Created Node");
         AddNewNode(new_node);
