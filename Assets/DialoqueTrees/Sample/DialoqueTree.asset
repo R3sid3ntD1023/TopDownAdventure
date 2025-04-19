@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7042435849912440758
+--- !u!114 &-764551792343901752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentTree: {fileID: 11400000}
   ID:
-    _id: bb7bdeee-7188-4cd5-8cf5-c8704c5ef78c
-  Position: {x: 500, y: 240}
+    _id: 56b4758d-0140-4707-9de3-1a2cb8cc3d11
+  Position: {x: 109, y: 286}
   Title: Title
   Description: Description...
   Child: {fileID: 5108531235885333485}
   Info:
     Speaker: Bread
     Message: I am Bread!
-    Sprite: {fileID: 21300000, guid: d0f2ca00017af45a59e0ccc1e81d226f, type: 3}
+    Sprite: {fileID: 21300000, guid: 871badd07384e4136b8315ccbfb65596, type: 3}
     OnExecuted:
       m_PersistentCalls:
         m_Calls: []
@@ -38,11 +38,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16cb045005862440a094b6ddf0dcb21, type: 3}
   m_Name: DialoqueTree
   m_EditorClassIdentifier: 
-  Blackboard: {fileID: 11400000, guid: 988b03dc64e9d0040bc80bfd23ba61b2, type: 2}
-  Current: {fileID: 0}
+  Blackboard: {fileID: 11400000, guid: 1dc000e71012b9a419f78f9f7590ba8f, type: 2}
+  Current: {fileID: -764551792343901752}
   Nodes:
-  - {fileID: -7042435849912440758}
   - {fileID: 5108531235885333485}
+  - {fileID: -764551792343901752}
 --- !u!114 &5108531235885333485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   ParentTree: {fileID: 11400000}
   ID:
     _id: d816bf8e-6109-49cf-b868-b4a22d90db88
-  Position: {x: 1087.2737, y: 310.28912}
+  Position: {x: 604, y: 101}
   Title: Title
   Description: Description...
   Child: {fileID: 0}

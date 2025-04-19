@@ -1,50 +1,55 @@
+using CustomAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Root", menuName = "Nodes/Root")]
-public class RootNode : BaseNode, IHaveChildrenInterface<BaseNode>
+namespace NodeSystem
 {
-    [AssetReference, Header("Children")]
-    public BaseNode Child;
 
-    protected override ENodeState OnExecute()
+    [CreateAssetMenu(fileName = "Root", menuName = "Nodes/Root")]
+    public class RootNode : BaseNode, IHaveChildrenInterface<BaseNode>
     {
-        if (Child != null)
-            return Child.Execute();
+        [AssetReference, Header("Children")]
+        public BaseNode Child;
 
-        return ENodeState.Finished;
+        protected override ENodeState OnExecute()
+        {
+            if (Child != null)
+                return Child.Execute();
+
+            return ENodeState.Finished;
+        }
+
+        public override object Clone()
+        {
+            var node = base.Clone() as RootNode;
+            node.Child = Child?.Clone() as BaseNode;
+            return node;
+        }
+
+        public void AddChild(BaseNode child)
+        {
+            Child = child;
+        }
+
+        public void RemoveChild(BaseNode child)
+        {
+            Child = null;
+        }
+
+        public BaseNode GetChild(int index)
+        {
+            return Child;
+        }
+
+        public bool HasChild(int index)
+        {
+            return Child != null;
+        }
+
+        public List<BaseNode> GetChildren()
+        {
+            return new List<BaseNode> { Child };
+        }
+
     }
-
-    public override object Clone()
-    {
-        var node = base.Clone() as RootNode;
-        node.Child = Child?.Clone() as BaseNode;
-        return node;
-    }
-
-    public void AddChild(BaseNode child)
-    {
-        Child = child;
-    }
-
-    public void RemoveChild(BaseNode child)
-    {
-        Child = null;
-    }
-
-    public BaseNode GetChild(int index)
-    {
-        return Child;
-    }
-
-    public bool HasChild(int index)
-    {
-        return Child != null;
-    }
-
-    public List<BaseNode> GetChildren()
-    {
-        return new List<BaseNode> { Child };
-    }
-
 }

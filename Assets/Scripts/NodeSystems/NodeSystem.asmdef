@@ -1,0 +1,16 @@
+{
+    "name": "NodeSystem",
+    "rootNamespace": "NodeSystem",
+    "references": [
+        "GUID:720239c836714374886a19675ca19b5b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

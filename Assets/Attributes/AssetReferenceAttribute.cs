@@ -2,30 +2,33 @@ using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 
-[System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
-[Conditional("UNITY_EDITOR")]
-public class AssetReferenceAttribute : PropertyAttribute
+namespace CustomAttributes
 {
-
-}
-
-[CustomPropertyDrawer(typeof(AssetReferenceAttribute))]
-public class AssetReferenceDrawer : PropertyDrawer
-{
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
+    [Conditional("UNITY_EDITOR")]
+    public class AssetReferenceAttribute : PropertyAttribute
     {
-        return EditorGUI.GetPropertyHeight(property, label, true);
+
     }
 
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(AssetReferenceAttribute))]
+    public class AssetReferenceDrawer : PropertyDrawer
     {
-        if (property.objectReferenceValue != null)
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            EditorGUI.ObjectField(position, label, property.objectReferenceValue, typeof(GameObject), false);
+            return EditorGUI.GetPropertyHeight(property, label, true);
         }
-        else
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.PropertyField(position, property, label);
+            if (property.objectReferenceValue != null)
+            {
+                EditorGUI.ObjectField(position, label, property.objectReferenceValue, typeof(GameObject), false);
+            }
+            else
+            {
+                EditorGUI.PropertyField(position, property, label);
+            }
         }
     }
 }

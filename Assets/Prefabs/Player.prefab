@@ -217,6 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4529a32a448d2841bf73ed8bffaa635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInterableChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2507854055720531010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,10 +271,10 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6947038735735682755}
-        m_TargetAssemblyTypeName: Interactee, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
+      - m_Target: {fileID: 3292019469454212044}
+        m_TargetAssemblyTypeName: QuestPlayer, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -1,3 +1,4 @@
+using DialoqueSystem;
 using UnityEngine;
 
 [RequireComponent(typeof(Dialoque))]
@@ -9,7 +10,6 @@ public class QuestGiver : MonoBehaviour, IInteractable
     public void Start()
     {
         m_Dialoque = GetComponent<Dialoque>();
-
     }
 
     void IInteractable.OnInteract(Interactee interactee)

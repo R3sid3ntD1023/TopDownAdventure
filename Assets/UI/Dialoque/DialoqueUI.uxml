@@ -19,7 +19,7 @@
                 <ui:VisualElement style="flex-direction: row; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; align-items: center;">
                     <ui:Label text="Label" name="Dialoque" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; white-space: nowrap;">
                         <Bindings>
-                            <ui:DataBinding property="text" data-source-path="Current.Info.Message" data-source-type="DialoqueTree, Assembly-CSharp" binding-mode="ToTarget" />
+                            <ui:DataBinding property="text" data-source-path="Current" data-source-type="DialoqueSystem.DialoqueTree, DialoqueSystem" binding-mode="ToTarget" />
                         </Bindings>
                     </ui:Label>
                     <ui:Button text="Next" name="Submit" class="button" />

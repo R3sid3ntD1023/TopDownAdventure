@@ -1,3 +1,4 @@
+using CustomAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -52,6 +53,14 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
         var value = callbackContext.ReadValue<Vector2>();
 
         _RigidBody.linearVelocity = new Vector3(value.x, value.y, 0) * Time.deltaTime * Speed;
+    }
+
+    public void OnInteract(InputAction.CallbackContext callbackContext)
+    {
+        if (!callbackContext.canceled)
+            return;
+
+        _Interactee.Interact();
     }
 
     public QuestManager GetQuestManager()

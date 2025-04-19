@@ -1,17 +1,21 @@
 
+using CustomAttributes;
 using System;
 using UnityEngine;
 
-[System.Serializable]
-public class NodeID
+namespace NodeSystem
 {
-    [SerializeField, ReadOnlyProperty]
-    private string _id;
-
-    public string ID { get { return _id; } }
-
-    NodeID()
+    [System.Serializable]
+    public class NodeID
     {
-        _id = Guid.NewGuid().ToString();
+        [SerializeField, ReadOnlyProperty]
+        private string _id;
+
+        public string ID { get { return _id; } }
+
+        NodeID()
+        {
+            _id = Guid.NewGuid().ToString();
+        }
     }
 }

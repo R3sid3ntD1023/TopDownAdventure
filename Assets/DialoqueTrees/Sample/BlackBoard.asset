@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BlackBoard
   m_EditorClassIdentifier: 
   Keys:
-  - rid: 1606626594704589446
+  - rid: 1606626611634634861
   references:
     version: 2
     RefIds:
-    - rid: 1606626594704589446
-      type: {class: BlackBoardKeyGameObject, ns: , asm: Assembly-CSharp}
+    - rid: 1606626611634634861
+      type: {class: 'BlackboardKey`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: NodeSystem, asm: NodeSystem}
       data:
         Name: Self

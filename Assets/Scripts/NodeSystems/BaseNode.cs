@@ -1,77 +1,81 @@
+using CustomAttributes;
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum ENodeState
+namespace NodeSystem
 {
-    Started,
-    Executing,
-    Finished
-}
-
-public abstract class BaseNode : ScriptableObject, ICloneable
-{
-    [AssetReference]
-    public NodeTreeBase ParentTree;
-
-    [HideInInspector]
-    public NodeID ID;
-
-    [HideInInspector]
-    public Vector2 Position;
-
-    public string Title = "Title";
-
-    [TextArea]
-    public string Description = "Description...";
-
-    private ENodeState m_State = ENodeState.Started;
-
-
-    public virtual object Clone()
+    public enum ENodeState
     {
-        return Instantiate(this);
+        Started,
+        Executing,
+        Finished
     }
 
-    public virtual VisualElement CreateInspectorGUI()
+    public abstract class BaseNode : ScriptableObject, ICloneable
     {
-        return null;
-    }
+        [AssetReference]
+        public NodeTreeBase ParentTree;
 
-    public ENodeState Execute()
-    {
-        if (m_State == ENodeState.Started)
+        [HideInInspector]
+        public NodeID ID;
+
+        [HideInInspector]
+        public Vector2 Position;
+
+        public string Title = "Title";
+
+        [TextArea]
+        public string Description = "Description...";
+
+        private ENodeState m_State = ENodeState.Started;
+
+
+        public virtual object Clone()
         {
-            OnBeginExecute();
-            m_State = ENodeState.Executing;
-
-            Debug.Log("Started!");
+            return Instantiate(this);
         }
 
-        if (m_State != ENodeState.Finished)
+        public virtual VisualElement CreateInspectorGUI()
         {
-            var state = OnExecute();
+            return null;
+        }
 
-            Debug.Log("Executing...");
-
-            if (state == ENodeState.Finished)
+        public ENodeState Execute()
+        {
+            if (m_State == ENodeState.Started)
             {
-                OnEndExecute();
-                m_State = ENodeState.Finished;
+                OnBeginExecute();
+                m_State = ENodeState.Executing;
+
+                Debug.Log("Started!");
             }
+
+            if (m_State != ENodeState.Finished)
+            {
+                var state = OnExecute();
+
+                Debug.Log("Executing...");
+
+                if (state == ENodeState.Finished)
+                {
+                    OnEndExecute();
+                    m_State = ENodeState.Finished;
+                }
+            }
+
+            return m_State;
         }
 
-        return m_State;
-    }
+        protected virtual void OnBeginExecute() { Debug.Log("Begin Execute"); }
 
-    protected virtual void OnBeginExecute() { Debug.Log("Begin Execute"); }
+        protected abstract ENodeState OnExecute();
 
-    protected abstract ENodeState OnExecute();
+        protected virtual void OnEndExecute() { Debug.Log("End Execute"); }
 
-    protected virtual void OnEndExecute() { Debug.Log("End Execute"); }
-
-    protected Blackboard GetBlackboard()
-    {
-        return ParentTree.Blackboard;
+        protected Blackboard GetBlackboard()
+        {
+            return ParentTree.Blackboard;
+        }
     }
 }
