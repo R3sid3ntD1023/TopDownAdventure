@@ -70,3 +70,12 @@
     border-bottom-width: 2px;
     border-left-width: 2px;
 }
+
+#Description {
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+}
+
+#title-label {
+    color: rgb(255, 255, 255);
+}

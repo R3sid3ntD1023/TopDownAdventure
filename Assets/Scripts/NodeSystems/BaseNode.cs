@@ -1,4 +1,3 @@
-using CustomAttributes;
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,22 +13,20 @@ namespace NodeSystem
 
     public abstract class BaseNode : ScriptableObject, ICloneable
     {
-        [AssetReference]
+        [HideInInspector]
         public NodeTreeBase ParentTree;
 
         [HideInInspector]
-        public NodeID ID;
+        public string ID;
 
         [HideInInspector]
         public Vector2 Position;
 
         public string Title = "Title";
 
-        [TextArea]
         public string Description = "Description...";
 
         private ENodeState m_State = ENodeState.Started;
-
 
         public virtual object Clone()
         {
@@ -48,14 +45,12 @@ namespace NodeSystem
                 OnBeginExecute();
                 m_State = ENodeState.Executing;
 
-                Debug.Log("Started!");
             }
 
             if (m_State != ENodeState.Finished)
             {
                 var state = OnExecute();
 
-                Debug.Log("Executing...");
 
                 if (state == ENodeState.Finished)
                 {
@@ -67,11 +62,11 @@ namespace NodeSystem
             return m_State;
         }
 
-        protected virtual void OnBeginExecute() { Debug.Log("Begin Execute"); }
+        protected virtual void OnBeginExecute() { }
 
         protected abstract ENodeState OnExecute();
 
-        protected virtual void OnEndExecute() { Debug.Log("End Execute"); }
+        protected virtual void OnEndExecute() { }
 
         protected Blackboard GetBlackboard()
         {

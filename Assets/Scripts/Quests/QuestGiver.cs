@@ -19,7 +19,6 @@ public class QuestGiver : MonoBehaviour, IInteractable
             var blackboard = m_Dialoque.GetTree().Blackboard;
             if (blackboard)
             {
-                blackboard.AddKey<IAcceptQuest>("Interactee");
                 blackboard.SetKey("Interactee", acceptee);
             }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -9,22 +10,26 @@ using UnityEngine.UIElements;
 
 namespace NodeSystem
 {
-    public class NodeView<T> : Node where T : BaseNode
+    public class NodeView : Node
     {
-        public T Node { get; private set; }
+        public BaseNode Node { get; private set; }
         public List<Port> Inputs { get; private set; } = new List<Port>();
         public List<Port> Outputs { get; private set; } = new List<Port>();
 
-        public UnityAction<T> OnSelectedEvent;
+        public UnityAction<BaseNode> OnSelectedEvent;
 
-        public UnityAction<T> OnSetAsRoot;
+        public UnityAction<BaseNode> OnSetAsRoot;
 
-        public NodeView(T node, string title)
+        public UnityAction<Node, Node, int, int> OnPortConnectedEvent;
+
+        public UnityAction<Node, Node, int, int> OnPortDisConnectedEvent;
+
+        public NodeView(BaseNode node, string title)
         {
             Initialize(node, title);
         }
 
-        public NodeView(T node, string title, string uiFile)
+        public NodeView(BaseNode node, string title, string uiFile)
             : base(uiFile)
         {
             Initialize(node, title);
@@ -51,11 +56,11 @@ namespace NodeSystem
             }
         }
 
-        private void Initialize(T node, string title)
+        private void Initialize(BaseNode node, string title)
         {
             this.Node = node;
             this.title = title;
-            this.viewDataKey = node.ID.ID;
+            this.viewDataKey = node.ID;
             this.dataSource = node;
 
             this.style.left = node.Position.x;
@@ -63,7 +68,7 @@ namespace NodeSystem
 
             var content_element = this.Q<VisualElement>("content");
             var content = node.CreateInspectorGUI();
-            if (content != null)
+            if (content != null && content_element != null)
             {
                 content.Bind(new SerializedObject(node));
                 content_element.Add(content);
@@ -95,6 +100,38 @@ namespace NodeSystem
 
                 Outputs.Add(port);
             }
+        }
+
+        public void SetPortCallbacks()
+        {
+            foreach (var port in Inputs)
+            {
+                (port as PortView).OnPortConnected += OnPortConnected;
+                (port as PortView).OnPortDisConnected += OnPortDisConnected;
+            }
+
+            foreach (var port in Outputs)
+            {
+                (port as PortView).OnPortConnected += OnPortConnected;
+                (port as PortView).OnPortDisConnected += OnPortDisConnected;
+            }
+        }
+
+        public override Port InstantiatePort(Orientation orientation, Direction direction, Port.Capacity capacity, Type type)
+        {
+            int index = direction == Direction.Input ? Inputs.Count : Outputs.Count;
+            var port = new PortView(index, orientation, direction, capacity, type);
+            return port;
+        }
+
+        private void OnPortDisConnected(Node arg0, Node arg1, int arg2, int arg3)
+        {
+            OnPortDisConnectedEvent?.Invoke(arg0, arg1, arg2, arg3);
+        }
+
+        private void OnPortConnected(Node parent, Node child, int input, int output)
+        {
+            OnPortConnectedEvent?.Invoke(parent, child, input, output);
         }
     }
 }

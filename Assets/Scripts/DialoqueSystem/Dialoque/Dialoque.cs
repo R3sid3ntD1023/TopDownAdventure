@@ -7,8 +7,10 @@ namespace DialoqueSystem
     {
         public DialoqueTree DialoqueTree;
 
+
         [SerializeField, ReadOnlyProperty]
         private DialoqueTree _dialogueTreeInstance;
+
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()

@@ -8,14 +8,15 @@ using UnityEngine.UIElements;
 namespace NodeSystem
 {
 
-    public partial class InspectorView<T> : VisualElement where T : BaseNode
+    public partial class InspectorView : VisualElement
     {
         Editor m_Editor;
 
         Length m_Padding = new Length(20, LengthUnit.Pixel);
 
 
-        public void UpdateSelection(T node)
+
+        public void UpdateSelection(BaseNode node)
         {
             Clear();
 

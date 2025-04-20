@@ -9,7 +9,7 @@ namespace DialoqueSystem
     public class OnDialoqueTreeFinishedEvent : UnityEvent<DialoqueTree> { }
 
     [CreateAssetMenu(fileName = "DialoqueTree", menuName = "Dialoque/Tree")]
-    public class DialoqueTree : NodeTree<DialoqueBaseNode, DialoqueBaseNode>
+    public class DialoqueTree : NodeTree
     {
         public UnityAction<DialoqueTree> OnFinished;
 
@@ -32,8 +32,7 @@ namespace DialoqueSystem
             var state = Current?.Execute();
             if (state == ENodeState.Finished)
             {
-                Current = Current?.GetNext();
-                Debug.Log($"{Current}");
+                Current = (Current as DialoqueBaseNode)?.GetNext();
             }
 
             if (Current == null)
@@ -49,7 +48,7 @@ namespace DialoqueSystem
             if (_Started)
                 return;
 
-            Traverse(Current);
+            Traverse(Current as DialoqueBaseNode);
             _Started = true;
         }
 
@@ -64,19 +63,13 @@ namespace DialoqueSystem
             _Finished = true;
         }
 
-        public override object Clone()
-        {
-            var tree = Instantiate(this);
-            tree.Blackboard = Blackboard.Instantiate(Blackboard);
-            tree.Current = Current?.Clone() as DialoqueBaseNode;
-            return tree;
-        }
 
         private void Traverse(DialoqueBaseNode root)
         {
             DialoqueBaseNode current = root;
             while (current != null)
             {
+                current.ParentTree = this;
                 current = current.GetNext();
             }
         }

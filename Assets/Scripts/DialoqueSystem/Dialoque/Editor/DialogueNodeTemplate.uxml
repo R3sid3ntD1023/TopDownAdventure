@@ -1,8 +1,17 @@
 <UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/DialoqueEditor/Editor/Dialoque/DialoqueNodeStyle.uss?fileID=7433441132597879392&amp;guid=a8f91969503af1e48bc9e3a813fded55&amp;type=3#DialoqueNodeStyle" />
+    <Style src="project://database/Assets/Scripts/DialoqueSystem/Dialoque/Editor/DialoqueNodeStyle.uss?fileID=7433441132597879392&amp;guid=a8f91969503af1e48bc9e3a813fded55&amp;type=3#DialoqueNodeStyle" />
     <ui:VisualElement name="node-border">
         <ui:VisualElement name="title">
-            <ui:Label name="title-label" text="DialoqueNode" class="unity-text-element unity-label" />
+            <ui:Label name="title-label" text="DialoqueNode" class="unity-text-element unity-label">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="Title" data-source-type="NodeSystem.BaseNode, NodeSystem" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+            <ui:Label text="Description" name="Description">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="Description" data-source-type="NodeSystem.BaseNode, NodeSystem" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
             <ui:VisualElement name="title-button-container">
                 <ui:VisualElement name="collapse-button">
                     <ui:VisualElement name="icon" />

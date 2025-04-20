@@ -5,14 +5,23 @@ using UnityEngine;
 
 namespace NodeSystem
 {
-    using BlackboardKeyGameObject = BlackboardKey<GameObject>;
 
     [System.Serializable]
-    public abstract class BlackboardKeyBase
+    public class BlackboardKeyBase
     {
         public string Name;
 
-        public abstract object Value { get; set; }
+        private object Value;
+
+        public T GetValue<T>() where T : class
+        {
+            if (Value as T is var v && v != null)
+                return v;
+
+            return null;
+        }
+
+        public void SetValue<T>(T value) { Value = value; }
 
         public BlackboardKeyBase(string name)
         {
@@ -20,40 +29,23 @@ namespace NodeSystem
         }
     }
 
-    public class BlackboardKey<T> : BlackboardKeyBase
-    {
-        private T KeyValue;
-
-        public override object Value
-        {
-            get => KeyValue; set
-            {
-                if (value is T)
-                    KeyValue = (T)value;
-            }
-        }
-
-        public BlackboardKey(string name) : base(name) { }
-    }
-
 
     [CreateAssetMenu(fileName = "BlackBoard", menuName = "Node/BlackBoard")]
     public class Blackboard : ScriptableObject
     {
-        [SerializeReference]
         public List<BlackboardKeyBase> Keys = new List<BlackboardKeyBase>();
 
         public Blackboard()
         {
-            Keys.Add(new BlackboardKeyGameObject("Self"));
+            Keys.Add(new BlackboardKeyBase("Self"));
         }
 
-        public void AddKey<T>(string name)
+        public void AddKey(string name)
         {
             if (HasKey(name))
                 return;
 
-            Keys.Add(new BlackboardKey<T>(name));
+            Keys.Add(new BlackboardKeyBase(name));
         }
 
         public BlackboardKeyBase GetKey(string name)
@@ -65,7 +57,7 @@ namespace NodeSystem
         {
             var key = GetKey(name);
             if (key != null)
-                key.Value = value;
+                key.SetValue(value);
         }
 
         public bool HasKey(string name)

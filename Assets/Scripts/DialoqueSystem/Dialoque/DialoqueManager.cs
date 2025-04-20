@@ -6,9 +6,13 @@ namespace DialoqueSystem
 
     public class DialoqueManager : MonoBehaviour
     {
+
         public static DialoqueManager Instance;
 
         public UIDocument DialoqueUI;
+
+        [Header("UI")]
+        public string SubmitButtonName = "Submit";
 
         private DialoqueManager() { }
 
@@ -37,8 +41,8 @@ namespace DialoqueSystem
 
             DialoqueUI.gameObject.SetActive(true);
             RootElement = DialoqueUI.rootVisualElement;
-            RootElement.Q<Button>("Submit").clicked += Execute;
-            RootElement.dataSource = tree;
+            RootElement.Q<Button>(SubmitButtonName).clicked += Execute;
+            RootElement.dataSource = tree.Current;
         }
 
         private void OnTreeFinished(DialoqueTree tree)
@@ -53,7 +57,10 @@ namespace DialoqueSystem
         private void Execute()
         {
             if (_currentDialoqueTree != null)
+            {
                 _currentDialoqueTree.Execute();
+                RootElement.dataSource = _currentDialoqueTree?.Current;
+            }
         }
     }
 }

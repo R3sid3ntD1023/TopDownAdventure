@@ -1,6 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-764551792343901752
+--- !u!114 &-5855066816150755392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5593fa9a96e8ca94e9952d9ea6f0a609, type: 3}
+  m_Name: QuestNode
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  ID: 10840af3-0279-44d6-8d1d-bf1829c65dad
+  Position: {x: 878.6625, y: 191.99998}
+  Title: QuestNode
+  Description: Description...
+  Child: {fileID: 0}
+  Quest: {fileID: 11400000, guid: b9f0339373a0b664c8daa495ed4982ef, type: 2}
+--- !u!114 &-4874207831303954163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,19 +32,15 @@ MonoBehaviour:
   m_Name: DialoqueNode
   m_EditorClassIdentifier: 
   ParentTree: {fileID: 11400000}
-  ID:
-    _id: 56b4758d-0140-4707-9de3-1a2cb8cc3d11
-  Position: {x: 109, y: 286}
-  Title: Title
+  ID: bcbfbe5f-a7f9-43a8-9514-e044dc50f898
+  Position: {x: 144.99904, y: 200.00003}
+  Title: DialoqueNode
   Description: Description...
-  Child: {fileID: 5108531235885333485}
+  Child: {fileID: -5855066816150755392}
   Info:
     Speaker: Bread
-    Message: I am Bread!
-    Sprite: {fileID: 21300000, guid: 871badd07384e4136b8315ccbfb65596, type: 3}
-    OnExecuted:
-      m_PersistentCalls:
-        m_Calls: []
+    Message: I am Bread
+    Sprite: {fileID: 21300000, guid: d0f2ca00017af45a59e0ccc1e81d226f, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,27 +54,16 @@ MonoBehaviour:
   m_Name: DialoqueTree
   m_EditorClassIdentifier: 
   Blackboard: {fileID: 11400000, guid: 1dc000e71012b9a419f78f9f7590ba8f, type: 2}
-  Current: {fileID: -764551792343901752}
+  Current: {fileID: -4874207831303954163}
   Nodes:
-  - {fileID: 5108531235885333485}
-  - {fileID: -764551792343901752}
---- !u!114 &5108531235885333485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5593fa9a96e8ca94e9952d9ea6f0a609, type: 3}
-  m_Name: QuestNode
-  m_EditorClassIdentifier: 
-  ParentTree: {fileID: 11400000}
-  ID:
-    _id: d816bf8e-6109-49cf-b868-b4a22d90db88
-  Position: {x: 604, y: 101}
-  Title: Title
-  Description: Description...
-  Child: {fileID: 0}
-  Quest: {fileID: 11400000, guid: b9f0339373a0b664c8daa495ed4982ef, type: 2}
+  - {fileID: -4874207831303954163}
+  - {fileID: -5855066816150755392}
+  NodeConnections:
+  - ParentID: 10840af3-0279-44d6-8d1d-bf1829c65dad
+    ChildID: 10840af3-0279-44d6-8d1d-bf1829c65dad
+    InputIndex: 0
+    OuputIndex: 0
+  - ParentID: bcbfbe5f-a7f9-43a8-9514-e044dc50f898
+    ChildID: 10840af3-0279-44d6-8d1d-bf1829c65dad
+    InputIndex: 0
+    OuputIndex: 0

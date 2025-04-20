@@ -1,3 +1,4 @@
+using NodeSystem;
 using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -11,11 +12,11 @@ namespace DialoqueSystem
     public class DialoqueEditor : GraphViewEditorWindow
     {
 
-        private DialoqueTreeView m_TreeView;
+        private DialoqueGraphView m_TreeView;
 
         private DialoqueNodeList m_NodeListView;
 
-        private DialogueInspectorView m_InspectorView;
+        private InspectorView m_InspectorView;
 
         private DialoqueTree m_DialoqueTree;
 
@@ -53,13 +54,13 @@ namespace DialoqueSystem
 
         public void CreateGUI()
         {
-            m_TreeView = new DialoqueTreeView();
+            m_TreeView = new DialoqueGraphView();
             m_TreeView.style.flexGrow = 1;
 
             m_NodeListView = new DialoqueNodeList();
             InitializeNodeList(m_NodeListView);
 
-            m_InspectorView = new DialogueInspectorView();
+            m_InspectorView = new InspectorView();
             m_InspectorView.style.flexGrow = 1;
 
             //setup selection callaback
@@ -108,6 +109,25 @@ namespace DialoqueSystem
         private void AddNewNode(Type type)
         {
             m_TreeView.CreateNode(type, Vector2.zero);
+        }
+
+
+        private void OnSelectionChange()
+        {
+            DialoqueTree tree = Selection.activeObject as DialoqueTree;
+            if (tree == null)
+            {
+                if (Selection.activeGameObject != null)
+                {
+                    Dialoque dialoque = Selection.activeGameObject.GetComponent<Dialoque>();
+                    if (dialoque != null)
+                    {
+                        tree = dialoque.DialoqueTree;
+                    }
+                }
+            }
+
+            Initialize(tree);
         }
     }
 }

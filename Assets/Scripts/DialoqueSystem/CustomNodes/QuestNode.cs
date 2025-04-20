@@ -32,7 +32,7 @@ namespace DialoqueSystem
                 return ENodeState.Finished;
 
             var blackboard = GetBlackboard();
-            var interactee = blackboard.GetKey("Interactee")?.Value as IAcceptQuest;
+            var interactee = blackboard.GetKey("Interactee").GetValue<IAcceptQuest>();
             if (interactee != null)
             {
                 var manager = interactee.GetQuestManager();

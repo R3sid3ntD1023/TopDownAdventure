@@ -1,4 +1,3 @@
-using CustomAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace NodeSystem
     [CreateAssetMenu(fileName = "Root", menuName = "Nodes/Root")]
     public class RootNode : BaseNode, IHaveChildrenInterface<BaseNode>
     {
-        [AssetReference, Header("Children")]
+        [HideInInspector]
         public BaseNode Child;
 
         protected override ENodeState OnExecute()

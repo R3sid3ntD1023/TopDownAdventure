@@ -253,6 +253,66 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58df462892fc4b342bfd50bd94ffd4ad, type: 3}
+--- !u!1 &335052923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 335052926}
+  - component: {fileID: 335052925}
+  - component: {fileID: 335052924}
+  m_Layer: 0
+  m_Name: VisualScripting SceneVariables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &335052924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335052923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &335052925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335052923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!4 &335052926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335052923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858992468362155391, guid: 2c11b9d1fa92b9b4eb3e3e6e6be18216, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.563305
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858992468362155391, guid: 2c11b9d1fa92b9b4eb3e3e6e6be18216, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.765759
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858992468362155391, guid: 2c11b9d1fa92b9b4eb3e3e6e6be18216, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1209,6 +1269,10 @@ PrefabInstance:
       propertyPath: DialoqueUI
       value: 
       objectReference: {fileID: 1793258958}
+    - target: {fileID: 1757772638080136387, guid: 24103bb4428262046927cc36866915e9, type: 3}
+      propertyPath: UIElements.SubmitButton
+      value: Submit
+      objectReference: {fileID: 0}
     - target: {fileID: 5525765204144633340, guid: 24103bb4428262046927cc36866915e9, type: 3}
       propertyPath: m_Name
       value: GameManger
@@ -1299,3 +1363,4 @@ SceneRoots:
   - {fileID: 825957795654399361}
   - {fileID: 319348307914443054}
   - {fileID: 285833579}
+  - {fileID: 335052926}

@@ -2,11 +2,11 @@ using CustomAttributes;
 using NodeSystem;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace DialoqueSystem
 {
+
     [System.Serializable]
     public struct DialoqueInfo
     {
@@ -17,13 +17,8 @@ namespace DialoqueSystem
 
         [AssetReference]
         public Sprite Sprite;
-
-        public OnDialoqueExecutedEvent OnExecuted;
-
     }
 
-    [System.Serializable]
-    public class OnDialoqueExecutedEvent : UnityEvent<DialoqueNode> { }
 
     [CreateAssetMenu(fileName = "Dialoque", menuName = "Dialoque/DialoqueNode")]
     public class DialoqueNode : DialoqueBaseNode
@@ -34,7 +29,6 @@ namespace DialoqueSystem
         protected override ENodeState OnExecute()
         {
             Debug.Log($"Speaker: {Info.Speaker} - {Info.Message}");
-            Info.OnExecuted.Invoke(this);
 
             return ENodeState.Finished;
         }
