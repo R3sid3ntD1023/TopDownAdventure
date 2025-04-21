@@ -1,4 +1,5 @@
 using CustomAttributes;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -22,9 +23,13 @@ public class InventoryItem : ScriptableObject
     [ReadOnlyProperty]
     public int CurrentStackSize = 0;
 
+    public Action<InventoryItem> OnEmpty;
+
     private void OnEnable()
     {
         if (string.IsNullOrEmpty(ID))
             ID = GUID.Generate().ToString();
     }
+
+    public virtual void Use(GameObject user) { Debug.Log("Used"); }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5353446449908405478}
   - component: {fileID: 6947038735735682755}
   - component: {fileID: 2507854055720531010}
+  - component: {fileID: 6616503681838773247}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -77,6 +78,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_CurrentItem: {fileID: 0}
+  m_CurrentItemIndex: -1
 --- !u!212 &3031578906989258977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -349,11 +352,44 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bb51b814-4e25-4fbb-bf40-40fa444a5f41
     m_ActionName: 'UI/ToggleInventory[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5511411083145819332}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3ae81c59-b789-49a2-b652-806ac4c22a03
+    m_ActionName: 'Player/UseItem[/Keyboard/i]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6616503681838773247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072829696595887310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1752ee4e5a48704d874e631ded58655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 50
+  MaxHealth: 100
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7056947845566105512
 GameObject:
   m_ObjectHideFlags: 0

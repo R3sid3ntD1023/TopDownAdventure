@@ -11,6 +11,13 @@ public class Inventory : MonoBehaviour
 
     public OnInventoryItemAddedEvent OnInventoryItemAdded = new OnInventoryItemAddedEvent();
 
+    [SerializeField]
+    private InventoryItem m_CurrentItem;
+
+    [SerializeField]
+    private int m_CurrentItemIndex = -1;
+
+
     public void Start()
     {
 
@@ -66,8 +73,13 @@ public class Inventory : MonoBehaviour
                     item.RemoveFromStack(added);
 
                     instance.CurrentStackSize = added;
+                    instance.OnEmpty += RemoveItem;
+
                     Items[slot_index] = instance;
                     OnInventoryItemAdded.Invoke(instance, slot_index);
+
+                    m_CurrentItem = instance;
+                    m_CurrentItemIndex = slot_index;
                 }
             }
 
@@ -76,4 +88,30 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void RemoveItem(InventoryItem item)
+    {
+        var index = Items.IndexOf(item);
+        if (Items.Remove(item))
+        {
+
+            if (m_CurrentItem == item)
+            {
+                m_CurrentItemIndex = index - 1;
+                m_CurrentItem = m_CurrentItemIndex > 0 ? Items[m_CurrentItemIndex] : null;
+
+            }
+        }
+    }
+
+    public void Equip()
+    {
+        m_CurrentItemIndex = (m_CurrentItemIndex + 1) % Items.Count;
+        m_CurrentItem = Items[m_CurrentItemIndex];
+
+    }
+
+    public void Use()
+    {
+        m_CurrentItem?.Use(this.gameObject);
+    }
 }

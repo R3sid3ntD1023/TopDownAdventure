@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8595610dffeee1241ab3d14040e49134, type: 3}
+  m_Script: {fileID: 11500000, guid: a39614dcbe30b534d91e184b98abd533, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
   ID: 4ae77a86ca7d93a489f3696bb4256890
@@ -19,3 +19,4 @@ MonoBehaviour:
   MaxStackSize: 5
   WorldPrefab: {fileID: 1006759564608765169, guid: 6912e2b5ff48f4447b8d3de12af528bc, type: 3}
   CurrentStackSize: 0
+  HealAmount: 20
