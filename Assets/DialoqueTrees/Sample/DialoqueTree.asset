@@ -33,7 +33,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentTree: {fileID: 11400000}
   ID: bcbfbe5f-a7f9-43a8-9514-e044dc50f898
-  Position: {x: 144.99904, y: 200.00003}
+  Position: {x: 272.02502, y: 284.70502}
   Title: DialoqueNode
   Description: Description...
   Child: {fileID: -5855066816150755392}
@@ -58,12 +58,4 @@ MonoBehaviour:
   Nodes:
   - {fileID: -4874207831303954163}
   - {fileID: -5855066816150755392}
-  NodeConnections:
-  - ParentID: 10840af3-0279-44d6-8d1d-bf1829c65dad
-    ChildID: 10840af3-0279-44d6-8d1d-bf1829c65dad
-    InputIndex: 0
-    OuputIndex: 0
-  - ParentID: bcbfbe5f-a7f9-43a8-9514-e044dc50f898
-    ChildID: 10840af3-0279-44d6-8d1d-bf1829c65dad
-    InputIndex: 0
-    OuputIndex: 0
+  NodeConnections: []

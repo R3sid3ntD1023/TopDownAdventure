@@ -30,4 +30,5 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+    <ui:VisualElement name="node-state" picking-mode="Ignore" />
 </UXML>

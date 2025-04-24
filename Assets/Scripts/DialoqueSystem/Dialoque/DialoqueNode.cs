@@ -30,7 +30,7 @@ namespace DialoqueSystem
         {
             Debug.Log($"Speaker: {Info.Speaker} - {Info.Message}");
 
-            return ENodeState.Finished;
+            return ENodeState.Success;
         }
 
         public override VisualElement CreateInspectorGUI()

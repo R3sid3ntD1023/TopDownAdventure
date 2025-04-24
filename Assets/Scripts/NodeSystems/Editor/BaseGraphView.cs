@@ -151,8 +151,7 @@ namespace NodeSystem
              x.InputIndex == input &&
              x.OuputIndex == output);
 
-            if (info != null)
-                m_Tree.NodeConnections.Remove(info);
+            m_Tree.NodeConnections.Remove(info);
         }
 
         private void OnPortConnected(Node parent, Node child, int input, int output)
@@ -217,5 +216,16 @@ namespace NodeSystem
                 m_Tree.Current = node;
         }
 
+        public void UpdateGraph()
+        {
+            nodes.ForEach(n =>
+            {
+                var node = n as TNodeView;
+                if (node != null)
+                {
+                    node.UpdatNodeState();
+                }
+            });
+        }
     }
 }

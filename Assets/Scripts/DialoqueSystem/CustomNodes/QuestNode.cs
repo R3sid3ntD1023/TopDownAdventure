@@ -29,7 +29,7 @@ namespace DialoqueSystem
         protected override ENodeState OnExecute()
         {
             if (m_QuestInstance == null)
-                return ENodeState.Finished;
+                return ENodeState.Failure;
 
             var blackboard = GetBlackboard();
             var interactee = blackboard.GetKey("Interactee").GetValue<IAcceptQuest>();
@@ -37,13 +37,13 @@ namespace DialoqueSystem
             {
                 var manager = interactee.GetQuestManager();
                 if (manager == null && manager.HasQuest(m_QuestInstance))
-                    return ENodeState.Finished;
+                    return ENodeState.Failure;
 
                 manager.ActivateQuest(Instantiate(m_QuestInstance));
                 Debug.Log($"Gave Quest to {interactee}");
             }
 
-            return ENodeState.Finished;
+            return ENodeState.Success;
         }
     }
 }

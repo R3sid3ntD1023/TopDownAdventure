@@ -24,6 +24,8 @@ namespace NodeSystem
 
         public UnityAction<Node, Node, int, int> OnPortDisConnectedEvent;
 
+        private string m_DynamicClass = "started";
+
         public NodeView(BaseNode node, string title)
         {
             Initialize(node, title);
@@ -76,6 +78,29 @@ namespace NodeSystem
 
 
             InitilaizePorts();
+        }
+
+        internal void UpdatNodeState()
+        {
+            ENodeState state = Node.State;
+
+            this.RemoveFromClassList(m_DynamicClass);
+            switch (state)
+            {
+                case ENodeState.Running:
+                    m_DynamicClass = "running";
+                    break;
+                case ENodeState.Failure:
+                    m_DynamicClass = "failure";
+                    break;
+                case ENodeState.Success:
+                    m_DynamicClass = "success";
+                    break;
+                default:
+                    break;
+            }
+
+            this.AddToClassList(m_DynamicClass);
         }
 
         private void InitilaizePorts()

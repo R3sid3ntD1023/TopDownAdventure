@@ -18,7 +18,7 @@ namespace NodeSystem
     }
 
     [System.Serializable]
-    public class ConnectionInfo
+    public struct ConnectionInfo
     {
         public string ParentID;
         public string ChildID;
@@ -66,9 +66,9 @@ namespace NodeSystem
 
         public BaseNode Current;
 
-        public List<BaseNode> Nodes = new List<BaseNode>();
+        public List<BaseNode> Nodes;
 
-        public List<ConnectionInfo> NodeConnections = new List<ConnectionInfo>();
+        public List<ConnectionInfo> NodeConnections;
 
         public BaseNode CreateNode(Type type, Vector2 pos)
         {
@@ -128,6 +128,7 @@ namespace NodeSystem
             var tree = Instantiate(this);
             tree.Blackboard = Instantiate(Blackboard);
             tree.Current = Current?.Clone() as BaseNode;
+            tree.NodeConnections = NodeConnections;
             return tree;
         }
 

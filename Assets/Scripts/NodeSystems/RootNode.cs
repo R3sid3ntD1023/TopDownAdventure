@@ -15,7 +15,7 @@ namespace NodeSystem
             if (Child != null)
                 return Child.Execute();
 
-            return ENodeState.Finished;
+            return ENodeState.Success;
         }
 
         public override object Clone()

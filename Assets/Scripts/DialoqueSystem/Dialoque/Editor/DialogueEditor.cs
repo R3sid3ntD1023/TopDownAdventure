@@ -127,7 +127,50 @@ namespace DialoqueSystem
                 }
             }
 
-            Initialize(tree);
+            if (Application.isPlaying)
+            {
+                if (tree)
+                {
+                    Initialize(tree);
+                }
+            }
+            else
+            {
+                if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+                {
+                    Initialize(tree);
+                }
+            }
+        }
+
+        private void OnEnable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        }
+
+        private void OnPlayModeStateChanged(PlayModeStateChange change)
+        {
+            switch (change)
+            {
+                case PlayModeStateChange.EnteredPlayMode:
+                    OnSelectionChange();
+                    break;
+                case PlayModeStateChange.EnteredEditMode:
+                    OnSelectionChange();
+                    break;
+            }
+        }
+
+        public void OnInspectorUpdate()
+        {
+            if (Application.isPlaying)
+                m_TreeView.UpdateGraph();
         }
     }
 }

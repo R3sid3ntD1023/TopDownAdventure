@@ -24,16 +24,16 @@ namespace DialoqueSystem
 
         public override void Execute()
         {
+            if (!Current)
+                return;
+
             if (IsFinished())
                 return;
 
             Initialize();
 
-            var state = Current?.Execute();
-            if (state == ENodeState.Finished)
-            {
-                Current = (Current as DialoqueBaseNode)?.GetNext();
-            }
+            Current.Execute();
+            Current = (Current as DialoqueBaseNode)?.GetNext();
 
             if (Current == null)
             {

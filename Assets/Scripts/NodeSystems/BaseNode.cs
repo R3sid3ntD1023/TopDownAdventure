@@ -6,9 +6,9 @@ namespace NodeSystem
 {
     public enum ENodeState
     {
-        Started,
-        Executing,
-        Finished
+        Running,
+        Success,
+        Failure
     }
 
     public abstract class BaseNode : ScriptableObject, ICloneable
@@ -26,7 +26,10 @@ namespace NodeSystem
 
         public string Description = "Description...";
 
-        private ENodeState m_State = ENodeState.Started;
+        public ENodeState State { get; private set; }
+
+
+        private bool m_IsStarted = false;
 
         public virtual object Clone()
         {
@@ -40,26 +43,22 @@ namespace NodeSystem
 
         public ENodeState Execute()
         {
-            if (m_State == ENodeState.Started)
+            if (!m_IsStarted)
             {
                 OnBeginExecute();
-                m_State = ENodeState.Executing;
+                m_IsStarted = true;
 
             }
 
-            if (m_State != ENodeState.Finished)
+            State = OnExecute();
+
+            if (State != ENodeState.Running)
             {
-                var state = OnExecute();
-
-
-                if (state == ENodeState.Finished)
-                {
-                    OnEndExecute();
-                    m_State = ENodeState.Finished;
-                }
+                OnEndExecute();
+                m_IsStarted = false;
             }
 
-            return m_State;
+            return State;
         }
 
         protected virtual void OnBeginExecute() { }
