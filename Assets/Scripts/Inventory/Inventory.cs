@@ -103,11 +103,22 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Equip()
+    public void EquipNext()
     {
+        if (Items.Count == 0)
+            return;
+
         m_CurrentItemIndex = (m_CurrentItemIndex + 1) % Items.Count;
         m_CurrentItem = Items[m_CurrentItemIndex];
+    }
 
+    public void EquipPrevious()
+    {
+        if (Items.Count == 0)
+            return;
+
+        m_CurrentItemIndex = (m_CurrentItemIndex - 1) % Items.Count;
+        m_CurrentItem = Items[m_CurrentItemIndex];
     }
 
     public void Use()

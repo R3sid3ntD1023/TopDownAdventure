@@ -63,6 +63,21 @@ public class QuestPlayer : MonoBehaviour, IAcceptQuest
         _Interactee.Interact();
     }
 
+    public void OnEquip(InputAction.CallbackContext callbackContext)
+    {
+        if (!callbackContext.canceled)
+            return;
+
+        var value = callbackContext.ReadValue<Vector2>();
+        if (value.y != 0)
+        {
+            if (value.y > 0)
+                _Inventory.EquipNext();
+            else
+                _Inventory.EquipPrevious();
+        }
+    }
+
     public QuestManager GetQuestManager()
     {
         return _QuestManager;
